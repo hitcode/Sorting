@@ -7,6 +7,43 @@ public class Sort<T> {
 	
 	
 	
+	public static <T extends Comparable> void  ThreewayQuickSort(Comparable[] array,int lo ,int hi)
+	{
+		
+		if(hi<=lo)
+			return;
+		
+		int l=lo;
+		int i=lo+1;
+		int h=hi;
+		
+		Comparable pivot=array[lo];
+		while(i<=h)
+		{
+				
+			if(array[i].compareTo(pivot)==0)
+				i++;
+			else if(array[i].compareTo(pivot)==-1)
+			{
+				swap(array,i,l);
+				i++;
+				l++;
+			}
+			else
+			{
+				swap(array,i,h);
+				h--;
+			}
+			
+		}
+			
+		ThreewayQuickSort(array,lo,l-1);
+		ThreewayQuickSort(array,h+1,hi);
+		
+		
+	}
+	
+	
 	public static <T extends Comparable> void merge(Comparable[] array,int lo ,int mid,int hi,Comparable[] tempArray)
 	{
 		
@@ -186,7 +223,7 @@ public class Sort<T> {
 	{
 		
 		Integer [] arr={12,2,1123,123,45,214,123,445,21421,2,12};
-		mergeSort(arr);
+		ThreewayQuickSort(arr,0,arr.length-1);
 		
 		for(int i:arr)
 			System.out.print(i+  " ");
